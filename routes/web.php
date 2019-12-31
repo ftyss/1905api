@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test/pay','TestController@alipay');        //支付宝沙箱测试
