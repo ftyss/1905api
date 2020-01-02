@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/test/pay','TestController@alipay');        //支付宝沙箱测试
+Route::get('/test/alipay/return','Alipay\PayController@aliReturn');
+Route::post('/test/alipay/notify','Alipay\PayController@notify');

@@ -18,7 +18,7 @@ class TestController extends Controller
         $timestamp = date('Y-m-d H:i:s');
         $version = '1.0';
         $return_url = 'http://api1905.fangtaoys.com/test/alipay/return';       // 支付宝同步通知
-        $notify_url = 'http://api1905.fangtaoys.com/alipay/notify';   //支付宝异步通知地址
+        $notify_url = 'http://api1905.fangtaoys.com/test/alipay/notify';   //支付宝异步通知地址
         $biz_content = '';
 
 
