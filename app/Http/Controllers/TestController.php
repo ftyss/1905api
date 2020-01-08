@@ -91,4 +91,10 @@ class TestController extends Controller
 
         //$url = 'https://openapi.alipaydev.com/gateway.do?';
     }
+
+    public function rsa1()
+    {
+        echo "xxxxx";echo '<hr>';
+        echo '<pre>';print_r($_GET);echo '</pre>';
+    }
 }
