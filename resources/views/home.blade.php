@@ -18,7 +18,7 @@
                     <br>
                         <a href="/user/addkey">添加公钥</a>
                         <a href="/user/decrypt/data">解密数据</a>
-{{--                        <a href="/user/signature1">验证签名</a>--}}
+                        <a href="/test/get/signonlie">验证签名</a>
                 </div>
             </div>
         </div>

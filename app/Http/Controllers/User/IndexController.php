@@ -66,8 +66,23 @@ class IndexController extends Controller
         echo "解密数据：". $dec_data;
     }
 
-//    public function signature1()
-//    {
-//        return view(user.signature1);
-//    }
+    public function signature1()
+    {
+        return view('user.signature1');
+    }
+    public function signature2()
+    {
+        $enc_data = trim($_POST['enc_data']);
+        echo "加密数据： ".$enc_data;echo '</br>';
+        //解密
+        $uid = Auth::id();
+        //echo "用户ID: ".$uid;
+        $u = UserPubKeyModel::where(['uid'=>$uid])->first();
+        //echo '<pre>';print_r($u->toArray());echo '</pre>';
+        $pub_key = $u->pubkey;
+        openssl_public_decrypt(base64_decode($enc_data),$dec_data,$pub_key);
+        echo '<hr>';
+        echo "解密数据：". $dec_data;
+
+    }
 }

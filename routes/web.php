@@ -45,7 +45,11 @@ Route::post('/user/addkey','User\IndexController@addSSHKey2');
 Route::get('/user/decrypt/data','User\IndexController@decrypt1');
 Route::post('/user/decrypt/data','User\IndexController@decrypt2');
 //验证签名
-//Route::get('/user/signature1','User\IndexController@signature1');
-//Route::post('/user/signature1','User\IndexController@signature2');
+Route::get('/sign1','TestController@sign1');
+Route::get('/test/get/signonlie','Sign\IndexController@signOnline');
+Route::post('/test/post/signonlie','Sign\IndexController@signOnline1');
+Route::get('/test/get/sign1','Sign\IndexController@sign1');
+Route::post('/test/post/sign2','Sign\IndexController@sign2');
+
 
 
