@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
 <form action="/test/post/signonlie" method="post">
     {{csrf_field()}}
     字段1： <input type="text" name="k[]"> 字段值： <input type="text" name="v[]"> <br>

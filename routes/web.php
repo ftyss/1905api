@@ -23,6 +23,8 @@ Route::post('/test/alipay/notify','Alipay\PayController@notify');
 Route::get('/api/test','Api\TestController@test');
 Route::post('/api/user/reg','Api\TestController@reg');  // 用户注册
 Route::post('/api/user/login','Api\TestController@login');  // 用户登录
+Route::get('/api/show/data','Api\TestController@showData');  // 用户获取数据
+
 Route::get('/api/user/list','Api\TestController@userList')->middleware('filter');  // 用户列表
 
 Auth::routes();

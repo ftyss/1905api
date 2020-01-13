@@ -16,7 +16,7 @@ class TestController extends Controller
     }
 
     // 用户注册
-    public function reg(Request $request)
+    public function reg0(Request $request)
     {
         echo '<pre>';print_r($request->input());echo '</pre>';
         // 验证用户名 验证email 验证手机号
@@ -42,7 +42,7 @@ class TestController extends Controller
        var_dump($uid);
     }
 
-    public function login(Request $request)
+    public function login0(Request $request)
     {
         $name = $request->input('name');
         $pass = $request->input('pass');
@@ -97,6 +97,53 @@ class TestController extends Controller
     {
         $list=UserModel::all();
         echo '<pre>';print_r($list->toArray());echo '</pre>';
+    }
+
+
+
+
+    public function reg()
+    {
+        $url="http://passport1905.com/api/user/reg";
+        $response=UserModel::curlPost($url,$_POST);
+        return $response;
+    }
+
+    public function login()
+    {
+        $url="http://passport1905.com/api/user/login";
+        $response=UserModel::curlPost($url,$_POST);
+        return $response;
+    }
+
+    public function showData()
+    {
+        $uid=$_SERVER['HTTP_UID'];
+        $token=$_SERVER['HTTP_TOKEN'];
+        echo "uid：".$uid;echo '</br>';
+        echo "token：".$token;echo '</br>';
+
+        $url="http://passport1905.com/api/auth";    //鉴权接口
+        $response=UserModel::curlPost($url,['uid'=>$uid,'token'=>$token]);
+        //echo '<pre>';print_r($response);echo '</pre>';die;
+        $status=json_decode($response,true);
+        
+        if($status['errno']==0)
+        {
+            $data=119;
+            $response=[
+                'errno'=>0,
+                'msg'=>'ok',
+                'data'=>$data
+            ];
+        }else{                                      
+            $response=[
+                'errno'=>40003,
+                'msg'=>'授权失败'
+            ];
+        }
+        return $response;
+
     }
 
 }
