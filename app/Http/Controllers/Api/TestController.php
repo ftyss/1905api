@@ -104,14 +104,16 @@ class TestController extends Controller
 
     public function reg()
     {
-        $url="http://passport1905.com/api/user/reg";
+        //$url="http://passport1905.com/api/user/reg";
+        $url="http://passport.fangtaoys.com/api/user/reg";
         $response=UserModel::curlPost($url,$_POST);
         return $response;
     }
 
     public function login()
     {
-        $url="http://passport1905.com/api/user/login";
+        //$url="http://passport1905.com/api/user/login";
+        $url="http://passport.fangtaoys.com/api/user/login";
         $response=UserModel::curlPost($url,$_POST);
         return $response;
     }
@@ -123,7 +125,8 @@ class TestController extends Controller
         echo "uid：".$uid;echo '</br>';
         echo "token：".$token;echo '</br>';
 
-        $url="http://passport1905.com/api/auth";    //鉴权接口
+        //$url="http://passport1905.com/api/auth";    //鉴权接口
+        $url="http://passport.fangtaoys.com/api/auth";
         $response=UserModel::curlPost($url,['uid'=>$uid,'token'=>$token]);
         //echo '<pre>';print_r($response);echo '</pre>';die;
         $status=json_decode($response,true);
@@ -145,5 +148,53 @@ class TestController extends Controller
         return $response;
 
     }
+
+
+    /**
+     * 2月4日   接口测试
+     */
+    public function postman()
+     {
+         echo __METHOD__;
+     }
+ 
+     public function postman1()
+     {
+
+        $data = [
+            'name'      => 'zhang',
+            'age'       => '22',
+            'email'     => 'zhang@qq.com',
+        ];
+
+        echo json_encode($data);
+
+        //  //获取用户标识
+        //  $token = $_SERVER['HTTP_TOKEN'];
+        //  // 当前url
+        //  $request_uri = $_SERVER['REQUEST_URI'];
+ 
+        //  $url_hash = md5($token . $request_uri);
+ 
+ 
+        //  $key = 'count:url:'.$url_hash;
+        //  //echo 'Key: '.$key;echo '</br>';
+ 
+        //  //检查 次数是否已经超过限制
+        //  $count = Redis::get($key);
+        //  echo "当前访问次数：" . $count;echo '<hr>';
+ 
+        //  if($count >= 5){
+        //      $time = 10;     
+        //      echo "请勿频繁请求, $time 秒后重试";
+        //      Redis::expire($key,$time);
+        //      die;
+        //  }
+ 
+        //  // 访问数 +1
+        //  $count = Redis::incr($key);
+        //  echo '已访问次数为 : '. $count;
+ 
+     }
 
 }

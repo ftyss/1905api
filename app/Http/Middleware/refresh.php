@@ -19,8 +19,8 @@ class refresh
         if(isset($_SERVER['HTTP_TOKEN'])){
             $redis_key = 'str:count:u:'.$_SERVER['HTTP_TOKEN'].':url:'.$_SERVER['REQUEST_URI'];
             $count=Redis::get($redis_key);
-            if($count>=5){
-                Redis::expire($redis_key,10);
+            if($count>=3){
+                Redis::expire($redis_key,5);
                 $response=[
                     'errno'=>400001,
                     'msg'=>"您的请求已达到上限，请稍后再试",

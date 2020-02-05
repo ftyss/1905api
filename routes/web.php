@@ -54,4 +54,9 @@ Route::get('/test/get/sign1','Sign\IndexController@sign1');
 Route::post('/test/post/sign2','Sign\IndexController@sign2');
 
 
+//2月4日   接口测试
+Route::get('/test/psm','Api\TestController@postman');
+Route::get('/test/psm1','Api\TestController@postman1')->middleware('filter','checkToken');
+
+
 
