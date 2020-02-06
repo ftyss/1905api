@@ -197,4 +197,22 @@ class TestController extends Controller
  
      }
 
+     public function md5test()
+     {
+         $data="Chinese fireman";
+         $key="1905";
+
+         //md5计算签名
+         $signature=md5($data.$key);
+         //$signature='asgkdjagheriajklghie';
+         echo "待发送数据 ：".$data;echo '</br>';
+         echo "签名 ：".$signature;echo '</br>';
+
+         //发送数据
+         $url = "http://passport1905.com/test/check?data=".$data.'&signature='.$signature;
+         echo $url;echo '<hr>';
+         $response=file_get_contents($url);
+         echo $response;
+     }
+
 }
