@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\UserModel;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redis;
+use GuzzleHttp\Client;
 
 class TestController extends Controller
 {
@@ -213,6 +214,35 @@ class TestController extends Controller
          echo $url;echo '<hr>';
          $response=file_get_contents($url);
          echo $response;
+     }
+
+     public function md5test1()
+     {
+         //待签名数据
+         $order_info=[
+            'name'      => 'zhang',
+            'age'       => '22',
+            'email'     => 'zhang@qq.com',
+         ];
+         $key='1905';
+        $data_json=json_encode($order_info);
+        $sign=md5($data_json.$key);     //计算签名
+        echo "待发送数据 ：".$data_json;echo '</br>';
+        echo "签名 ： ".$sign;echo '</br>';
+        
+        //post 发送数据
+        $client=new Client();
+        $response = $client->request('POST', 'http://passport1905.com/test/check1', [
+            'form_params' => [
+                "data"=>$data_json,
+                "sign"=>$sign
+            ]
+        ]);
+
+        //接收响应
+        $response_data=$response->getBody();
+        echo '<hr>';
+        echo $response_data;
      }
 
 }
