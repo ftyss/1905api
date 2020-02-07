@@ -60,6 +60,7 @@ Route::get('/test/psm1','Api\TestController@postman1')->middleware('filter','che
 
 Route::get('/test/md5','Api\TestController@md5test');       //签名
 Route::get('/test/md51','Api\TestController@md5test1');     //post   签名
+Route::get('/test/md52','Api\TestController@md5test2');     //密钥签名  
 
 
 ####################################################################################

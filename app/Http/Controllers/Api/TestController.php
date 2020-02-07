@@ -245,4 +245,29 @@ class TestController extends Controller
         echo $response_data;
      }
 
+     public function md5test2()
+     {
+        //待签名数据
+        $data="Chinese fireman";
+        echo "原始数据 ：".$data;echo '</br>';
+        //计算签名
+        $path=storage_path('keys/priv.key');
+        $pkeyid=openssl_pkey_get_private("file://".$path);
+
+        openssl_sign($data,$signature,$pkeyid);
+        openssl_free_key($pkeyid);
+        //var_dump($signature);
+        echo "原数据签名后 ：".$signature;echo '</br>';
+
+        //base64编码
+        $sign_str=base64_encode($signature);
+        echo "base64_encode后数据 ：".$sign_str;echo '<hr>';
+
+        $url="http://passport1905.com/test/check2?".'data='.$data.'&sign='.urlencode($sign_str);
+        //echo $url;
+        $response=file_get_contents($url);
+        echo $response;
+
+     }
+
 }
