@@ -270,4 +270,25 @@ class TestController extends Controller
 
      }
 
+
+    public function encryption()
+    {
+        $data="hello world";
+        echo "原密文 ：".$data;echo '</br>';
+        $method='AES-256-CBC';
+        $key='1905';
+        $iv='amfkjjjdsvkwdsja';
+
+        //加密
+        $enc_data=openssl_encrypt($data,$method,$key,OPENSSL_RAW_DATA,$iv);
+        echo "加密密文 ：".$enc_data;echo '</br>';
+        //echo 123;die;
+        //发送数据
+        $url="http://passport1905.com/test/decrypt?data=".urlencode(base64_encode($enc_data));
+        echo "传输的url数据 ：".$url;echo '<hr>';
+        
+        $response=file_get_contents($url);
+        echo $response;
+    }
+
 }
