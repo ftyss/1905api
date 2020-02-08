@@ -62,6 +62,7 @@ Route::get('/test/md5','Api\TestController@md5test');       //签名
 Route::get('/test/md51','Api\TestController@md5test1');     //post   签名
 Route::get('/test/md52','Api\TestController@md5test2');     //密钥签名  
 Route::get('/test/encryption','Api\TestController@encryption');     //对称加密
+Route::get('/test/encryption2','Api\TestController@encryption2');     //非对称加密
 
 
 ####################################################################################

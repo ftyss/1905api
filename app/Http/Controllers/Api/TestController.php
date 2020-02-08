@@ -270,7 +270,9 @@ class TestController extends Controller
 
      }
 
-
+     /**
+      * 对称加密
+      */
     public function encryption()
     {
         $data="hello world";
@@ -288,6 +290,26 @@ class TestController extends Controller
         echo "传输的url数据 ：".$url;echo '<hr>';
         
         $response=file_get_contents($url);
+        echo $response;
+    }
+
+    /**
+     * 非对称加密
+     */
+    public function encryption2()
+    {
+        $data="Chinese fireman";
+        echo "原始数据  ：".$data;echo '</br>';
+        
+        //加密
+        $priv_key=file_get_contents(storage_path('keys/priv.key'));
+        openssl_private_encrypt($data,$enc_data,$priv_key);
+        echo "加密密文 ：".$enc_data;echo '</br>';
+
+        //发送数据
+        $url="http://passport1905.com/test/decrypt2?data=".urlencode(base64_encode($enc_data));
+        echo "传输的url数据 ：".$url;echo '<hr>';
+        $response=file_get_contents($url);echo '</br>';
         echo $response;
     }
 
